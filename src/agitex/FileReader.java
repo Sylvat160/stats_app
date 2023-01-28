@@ -16,7 +16,13 @@ public class FileReader {
 	 {
 		 try 
 		 {
-			 File file = new File(_filePath);
+//			 File file = new File(_filePath);
+			 File file = new File("example.txt");
+			 String fileName = file.getName();
+			 int dotIndex = fileName.lastIndexOf(".");
+			 String extension = fileName.substring(dotIndex + 1);
+			 System.out.println("Extension : " + extension);
+
 		 }catch (Exception e) 
 		 {
 			 e.printStackTrace();

@@ -14,7 +14,7 @@ public class Client {
 	}
 	
 	public String getNames() {
-		return nom + prenom;
+		return nom + " " + prenom;
 	}
 	
 	public void updateNames(String _nom, String _prenom)

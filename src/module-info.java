@@ -6,4 +6,5 @@
  *
  */
 module agitex {
+	requires json.simple;
 }

@@ -1,21 +1,44 @@
 package agitex;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class Statistics {
-    private Map<String, Float> averageSalaries;
-
-    public Statistics() {
-        this.averageSalaries = new HashMap<>();
+    private HashMap<String, Float> moyenneSP;
+    
+    public Statistics(List<Client> clients)
+    {
+    	this.moyenneSP = new HashMap<>();
+    	
+    	for (Client c : clients) {
+    		String profession = c.getProfession();
+    		float salaire = c.getSalaire();
+    		
+    		if (!moyenneSP.containsKey(profession))
+    		{
+    			moyenneSP.put(profession, salaire);
+    		} else 
+    		{
+    			float moyenneActuelle = moyenneSP.get(profession);
+    			int count = getClientCountByPofession(clients, profession);
+    			moyenneSP.put(profession, (moyenneActuelle * (count - 1) + salaire) / count);
+    		}
+    	}
     }
-
-    public void calculateAverageSalaries(FileReader fileReader) {
-        // Code pour parcourir la liste des clients et calculer les moyennes
-        // de salaires par profession
+    
+    private int getClientCountByPofession(List<Client> clients, String profession)
+    {
+    	int count = 0;
+    	for (Client c : clients)
+    	{
+    		if (c.getProfession().equals(profession)) {
+    			count++;
+    		}
+    	}
+    	return count;
     }
-
-    public Map<String, Float> getAverageSalaries() {
-        return this.averageSalaries;
+    
+    public HashMap<String, Float> getMoyenneSP() {
+    	return moyenneSP;
     }
 }

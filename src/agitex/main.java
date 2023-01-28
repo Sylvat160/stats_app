@@ -1,5 +1,7 @@
 package agitex;
 
+import java.io.FileNotFoundException;
+
 public class main {
 
 	public static void main(String[] args) {
@@ -8,6 +10,13 @@ public class main {
 		
 		System.out.println(sylva.getNames());
 		
+		FileReaders file = new FileReaders();
+		try {
+			file.readCsv();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

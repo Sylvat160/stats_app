@@ -10,9 +10,12 @@ public class main {
 
 		FileReaders file = new FileReaders();
 		try {
-			List<Client> clients = file.readCsv("/home/ts/Developpement/JAVA/agitex/src/agitex/client.txt");
-			Statistics stats = new Statistics(clients);
+//			List<Client> clients = file.readCsv("/home/ts/Developpement/JAVA/agitex/src/agitex/client.txt");
+			List<Client> xml = file.readXml("/home/ts/Developpement/JAVA/agitex/src/agitex/cl.xml");
+			Statistics stats = new Statistics(xml);
 			System.out.println(stats.getMoyenneSP());
+			
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

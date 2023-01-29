@@ -108,7 +108,7 @@ public class FileReaders {
 		 return clients;
 	 }
 	 
-	 void readXml(String filePath) throws FileNotFoundException
+	 List<Client> readXml(String filePath) throws FileNotFoundException
 	 {
 		 try
 		 {
@@ -120,14 +120,20 @@ public class FileReaders {
 			 for (int i = 0; i < list.getLength(); i++)
 			 {
 				 Node n = list.item(i);
-				 System.out.println(n.getNodeName());
+//				 System.out.println(n.getNodeName());
 				 Element el = (Element) n;
-				 System.out.println("nom : " + el.getElementsByTagName("nom").item(0));
+				 String nom = el.getElementsByTagName("nom").item(0).getTextContent();
+				 String prenom = el.getElementsByTagName("prenom").item(0).getTextContent();
+				 Long age = Long.parseLong(el.getElementsByTagName("age").item(0).getTextContent());
+				 String profession = el.getElementsByTagName("profession").item(0).getTextContent();
+				 Long salaire = Long.parseLong(el.getElementsByTagName("salaire").item(0).getTextContent());
+				 clients.add(new Client(nom, prenom, age, profession, salaire));
 			 }
 		 }catch(Exception e)
 		 {
 			 e.printStackTrace();
 		 }
+		 return clients;
 	 }
 	 
 //	 File file = new File(filePath);

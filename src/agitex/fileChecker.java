@@ -1,5 +1,0 @@
-package agitex;
-
-class fileChecker {
-	
-}

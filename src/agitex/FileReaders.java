@@ -2,6 +2,7 @@ package agitex;
 
 import java.io.BufferedReader;
 import org.json.simple.parser.JSONParser;
+
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import java.io.FileReader;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
+
 public class FileReaders {
 	private List<Client> clients;
 	
@@ -18,13 +21,13 @@ public class FileReaders {
 //		 this.clients = new ArrayList<>();
 //	 }
 	 
-	 public void readTxt()  throws FileNotFoundException
+	private void readTxt(String filePath)  throws FileNotFoundException
 	 {
 		 // 
-		 File file = new File("/home/ts/Developpement/JAVA/agitex/src/agitex/client.txt");
+//		 File file = new File("/home/ts/Developpement/JAVA/agitex/src/agitex/client.txt");
+		 File file = new File(filePath);
 		 Scanner scan = new Scanner(file);
 //		 List<String> cl = ;
-		 int i = 0;
 		 
 		 String fi = "";
 		 while (scan.hasNextLine())
@@ -34,14 +37,16 @@ public class FileReaders {
 		 }
 		 
 		 System.out.println(fi);
+		 scan.close();
+
 	 }
 	 
-	 public void readJson() throws FileNotFoundException
+	 private void readJson(String filePath) throws FileNotFoundException
 	 {
 		 String jsonContent = "";
 		 try {
-			 BufferedReader br = new BufferedReader(new FileReader("/home/ts/Developpement/JAVA/agitex/src/agitex/client.json"));
-			 
+//			 BufferedReader br = new BufferedReader(new FileReader("/home/ts/Developpement/JAVA/agitex/src/agitex/client.json"));
+			 BufferedReader br = new BufferedReader(new FileReader(filePath));
 			 String line;
 			 while ((line = br.readLine()) != null)
 			 {
@@ -72,14 +77,14 @@ public class FileReaders {
 		 }
 	 }
 	 
-	 public void readCsv() throws FileNotFoundException
+	 private void readCsv(String filePath) throws FileNotFoundException
 	 {
-		 String file = "/home/ts/Developpement/JAVA/agitex/src/agitex/client.csv";
+//		 String file = "/home/ts/Developpement/JAVA/agitex/src/agitex/client.csv";
 		 BufferedReader reader =  null;
 		 String line = "";
 		 
 		 try {
-			 reader =  new BufferedReader(new FileReader(file));
+			 reader =  new BufferedReader(new FileReader(filePath));
 			 while((line = reader.readLine()) != null) 
 			 {
 				 	String[] row = line.split(",");
@@ -97,22 +102,66 @@ public class FileReaders {
 		 }
 	 }
 	 
-//	 public List<Client> readFile(String _filePath)
+//	 void readXml() throws FileNotFoundException
 //	 {
-//		 try 
+//		 try
 //		 {
-////			 File file = new File(_filePath);
-//			 File file = new File("example.txt");
-//			 String fileName = file.getName();
-//			 int dotIndex = fileName.lastIndexOf(".");
-//			 String extension = fileName.substring(dotIndex + 1);
-//			 System.out.println("Extension : " + extension);
-//
-//		 }catch (Exception e) 
+//			 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+//			 DocumentBuilder builder = factory.newDocumentBuilder();
+//			 Document doc = builder.parse("path");
+//			 System.out.println(doc.getDocumentElement().getNodeName());
+//			 NodeList list = doc.getElementsByTagName("client");
+//			 for (int i = 0; i < list.getLength(); i++)
+//			 {
+//				 Node n = list.item(i);
+//				 System.out.println(n.getNodeName());
+//				 Element el = (Element) n;
+//				 System.out.println("nom : " + el.getElementsBytagName("nom").item(0));
+//			 }
+//		 }catch(Exception e)
 //		 {
 //			 e.printStackTrace();
 //		 }
-//		 
-//		 return clients;
 //	 }
+	 
+	 public void readFile(String filePath)
+	 {
+
+		 
+//			 File file = new File(_filePath);
+			 File file = new File(filePath);
+			 String fileName = file.getName();
+			 int dotIndex = fileName.lastIndexOf(".");
+			 String extension = fileName.substring(dotIndex + 1);
+//			 System.out.println("Extension : " + extension);
+			 if (extension == "cvs")
+			 {
+				 try {
+					readCsv(filePath);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 }
+			 else if (extension == "json")
+			 {
+				 try {
+					readJson(filePath);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 }
+			 else 
+			 {
+				 try {
+					readTxt(filePath);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 }
+		 
+		 
+	 }
 }

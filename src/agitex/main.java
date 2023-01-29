@@ -11,12 +11,7 @@ public class main {
 		System.out.println(sylva.getNames());
 		
 		FileReaders file = new FileReaders();
-		try {
-			file.readCsv();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		file.readFile("/home/ts/Developpement/JAVA/agitex/src/agitex/client.txt");
 	}
 
 }

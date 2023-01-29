@@ -92,15 +92,13 @@ public class FileReaders {
 			 {
 				 	String[] row = line.split(",");
 				 	
-				 	for (String index : row) 
-				 	{
-				 		System.out.printf("%10s", index);
-				 	}
-				 	System.out.println(row[0]);
-				 	clients.add(new Client(row[0], row[1], Long.parseLong(row[2]), row[3], Long.parseLong(row[4])));
+//				 	for (String index : row) 
+//				 	{
+//				 		System.out.printf("%10s", index);
+//				 	}
 				 	
-//				 	System.out.println(clients);
-//				 	System.out.println();
+				 	clients.add(new Client(row[0], row[1], Long.parseLong(row[2]), row[3], Long.parseLong(row[4])));
+				 	System.out.println();
 			 }
 			 reader.close();
 		 } catch (Exception e)
@@ -132,44 +130,8 @@ public class FileReaders {
 		 }
 	 }
 	 
-	 public void readFile(String filePath)
-	 {
-
-		 
-//			 File file = new File(_filePath);
-			 File file = new File(filePath);
-			 String fileName = file.getName();
-			 int dotIndex = fileName.lastIndexOf(".");
-			 String extension = fileName.substring(dotIndex + 1);
-//			 System.out.println("Extension : " + extension);
-			 if (extension == "cvs")
-			 {
-				 try {
-					readCsv(filePath);
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			 }
-			 else if (extension == "json")
-			 {
-				 try {
-					readJson(filePath);
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			 }
-			 else 
-			 {
-				 try {
-					readTxt(filePath);
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			 }
-		 
-		 
-	 }
+//	 File file = new File(filePath);
+//	 String fileName = file.getName();
+//	 int dotIndex = fileName.lastIndexOf(".");
+//	 String extension = fileName.substring(dotIndex + 1);
 }

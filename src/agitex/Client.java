@@ -15,7 +15,7 @@ public class Client {
 	
 	@Override
     public String toString() {
-        return "Nom: " + nom + ", Prenom: " + prenom + ", Age: " + age + ", Profession: " + profession + ", Salaire: " + salaire;
+        return "Nom: " + nom + ", Prenom: " + prenom + ", Age: " + age + ", Profession: " + profession + ", Salaire: " + salaire + "K";
     }
 	
 	public String getNames() {

@@ -1,6 +1,7 @@
 package agitex;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class main {
 
@@ -12,7 +13,9 @@ public class main {
 		
 		FileReaders file = new FileReaders();
 		try {
-			file.readCsv("/home/ts/Developpement/JAVA/agitex/src/agitex/client.csv");
+			List<Client> clients = file.readJson("/home/ts/Developpement/JAVA/agitex/src/agitex/client.json");
+			Statistics stats = new Statistics(clients);
+			System.out.println(stats.getMoyenneSP());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

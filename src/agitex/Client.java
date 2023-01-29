@@ -13,6 +13,11 @@ public class Client {
 		this.salaire = salaire;
 	}
 	
+	@Override
+    public String toString() {
+        return "Nom: " + nom + ", Prenom: " + prenom + ", Age: " + age + ", Profession: " + profession + ", Salaire: " + salaire;
+    }
+	
 	public String getNames() {
 		return nom + " " + prenom;
 	}

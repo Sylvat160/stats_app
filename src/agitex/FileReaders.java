@@ -61,11 +61,12 @@ public class FileReaders {
 				 String profession = (String) client.get("profession");
 				 long salaire = (long) client.get("salaire");
 				 System.out.println(nom + " " + prenom + "\n");
-				 clients.add(new Client(nom,prenom,age,profession,salaire));
+				 Client cl = new Client(nom,prenom,age,profession,salaire);
+				 clients.add(cl);
 				 
 			 }
-			 System.out.println("clients :" + clients);
-			 System.out.println(clients.get(0));
+//			 System.out.println("clients :" + clients);
+//			 System.out.println(clients.get(0).getNames());
 		 }catch (Exception e)
 		 {
 			 e.printStackTrace();
@@ -89,6 +90,9 @@ public class FileReaders {
 				 		System.out.printf("%10s", index);
 				 	}
 				 	System.out.println(row[0]);
+				 	clients.add(new Client(row[0], row[1], Long.parseLong(row[2]), row[3], Long.parseLong(row[4])));
+				 	
+				 	System.out.println(clients);
 				 	System.out.println();
 			 }
 			 reader.close();

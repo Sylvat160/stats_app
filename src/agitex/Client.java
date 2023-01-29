@@ -2,10 +2,10 @@ package agitex;
 
 public class Client {
 	private String nom, prenom, profession;
-	private int age;
-	private float salaire;
+	private long age;
+	private long salaire;
 	
-	Client(String nom,String prenom,int age,String profession, float salaire){
+	Client(String nom,String prenom,long age,String profession, long salaire){
 		this.nom = nom;
 		this.prenom = prenom;
 		this.age = age;
@@ -33,20 +33,20 @@ public class Client {
 		this.profession = _profession;
 	}
 	
-	public float getSalaire() {
+	public long getSalaire() {
 		return salaire;
 	}
-	public void updateSalaire(float _salaire) 
+	public void updateSalaire(long _salaire) 
 	{
 		this.salaire = _salaire;
 	}
 	
-	public int getAge()
+	public long getAge()
 	{
 		return age;
 	}
 	
-	public void updateAge(int _age)
+	public void updateAge(long _age)
 	{
 		this.age = _age;
 	}

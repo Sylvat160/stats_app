@@ -17,9 +17,9 @@ import java.util.Scanner;
 public class FileReaders {
 	private List<Client> clients;
 	
-//	 public FileReaders() {
-//		 this.clients = new ArrayList<>();
-//	 }
+	 public FileReaders() {
+		 this.clients = new ArrayList<>();
+	 }
 	 
 	private void readTxt(String filePath)  throws FileNotFoundException
 	 {
@@ -41,43 +41,38 @@ public class FileReaders {
 
 	 }
 	 
-	 private void readJson(String filePath) throws FileNotFoundException
+	 public void readJson(String filePath) throws FileNotFoundException
 	 {
-		 String jsonContent = "";
 		 try {
-//			 BufferedReader br = new BufferedReader(new FileReader("/home/ts/Developpement/JAVA/agitex/src/agitex/client.json"));
-			 BufferedReader br = new BufferedReader(new FileReader(filePath));
-			 String line;
-			 while ((line = br.readLine()) != null)
+//			 BufferedReader br = new BufferedReader(new FileReader(filePath));
+			
+			 JSONParser parser = new JSONParser();
+			 Object obj = parser.parse(new FileReader(filePath));
+			 JSONObject json = (JSONObject) obj;
+			 
+			 JSONArray jsonArray = (JSONArray) json.get("clients");
+			 for (int i = 0; i < jsonArray.size(); i++)
 			 {
-				 jsonContent += line + "\n";
-				 JSONParser parser = new JSONParser();
-				 Object ob = parser.parse(new FileReader("/home/ts/Developpement/JAVA/agitex/src/agitex/client.json"));
-				 JSONObject json = (JSONObject) ob;
+				 JSONObject client = (JSONObject) jsonArray.get(i);
 				 
-//				 String name = (String) json.get("client");
-//				 JSONObject clients = (JSONObject) json.get("client");
-				 JSONArray jsonArray = (JSONArray) json.get("clients");
-				 for (int i = 0; i < jsonArray.size(); i++)
-				 {
-					 JSONObject client = (JSONObject) jsonArray.get(i);
-					 String nom = (String) client.get("nom");
-					 String prenom = (String) client.get("prenom");
-					 long age = (long) client.get("age");
-					 String profession = (String) client.get("profession");
-					 long salaire = (long) client.get("salaire");
-					 System.out.println(nom + " " + prenom + "\n");
-				 }
+				 String nom = (String) client.get("nom");
+				 String prenom = (String) client.get("prenom");
+				 long age = (long) client.get("age");
+				 String profession = (String) client.get("profession");
+				 long salaire = (long) client.get("salaire");
+				 System.out.println(nom + " " + prenom + "\n");
+				 clients.add(new Client(nom,prenom,age,profession,salaire));
 				 
 			 }
-			 br.close();
+			 System.out.println("clients :" + clients);
+			 System.out.println(clients.get(0));
 		 }catch (Exception e)
 		 {
 			 e.printStackTrace();
 		 }
 	 }
 	 
-	 private void readCsv(String filePath) throws FileNotFoundException
+	 public void readCsv(String filePath) throws FileNotFoundException
 	 {
 //		 String file = "/home/ts/Developpement/JAVA/agitex/src/agitex/client.csv";
 		 BufferedReader reader =  null;
@@ -93,6 +88,7 @@ public class FileReaders {
 				 	{
 				 		System.out.printf("%10s", index);
 				 	}
+				 	System.out.println(row[0]);
 				 	System.out.println();
 			 }
 			 reader.close();

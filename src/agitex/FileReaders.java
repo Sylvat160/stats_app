@@ -27,30 +27,19 @@ public class FileReaders {
 		 this.clients = new ArrayList<>();
 	 }
 	 
-	private void readTxt(String filePath)  throws FileNotFoundException
-	 {
-		 // 
-//		 File file = new File("/home/ts/Developpement/JAVA/agitex/src/agitex/client.txt");
-		 File file = new File(filePath);
-		 Scanner scan = new Scanner(file);
-//		 List<String> cl = ;
-		 
-		 String fi = "";
-		 while (scan.hasNextLine())
-		 {
-			 fi = fi.concat(scan.nextLine() + "\n");
-//			 System.out.println(scan.nextLine());
-		 }
-		 
-		 System.out.println(fi);
-		 scan.close();
-
-	 }
 	 
-	 public List<Client> readJson(String filePath) throws FileNotFoundException
+	 public List<Client> readJson(String filePath) throws Exception
 	 {
+		 
+		 File file = new File(filePath);
+		 String fileName = file.getName();
+		 int dotIndex = fileName.lastIndexOf(".");
+		 String extension = fileName.substring(dotIndex + 1);
+		 if (extension != "json")
+		 {
+			 throw new Exception("Le fichier n'est pas de format JSON");
+		 }
 		 try {
-//			 BufferedReader br = new BufferedReader(new FileReader(filePath));
 			
 			 JSONParser parser = new JSONParser();
 			 Object obj = parser.parse(new FileReader(filePath));
@@ -108,8 +97,17 @@ public class FileReaders {
 		 return clients;
 	 }
 	 
-	 List<Client> readXml(String filePath) throws FileNotFoundException
+	 List<Client> readXml(String filePath) throws Exception
 	 {
+		 
+		 File file = new File(filePath);
+		 String fileName = file.getName();
+		 int dotIndex = fileName.lastIndexOf(".");
+		 String extension = fileName.substring(dotIndex + 1);
+		 if (extension != "xml")
+		 {
+			 throw new Exception("Le fichier n'est pas de format xml");
+		 }
 		 try
 		 {
 			 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

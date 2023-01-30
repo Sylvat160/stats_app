@@ -35,7 +35,7 @@ public class FileReaders {
 		 String fileName = file.getName();
 		 int dotIndex = fileName.lastIndexOf(".");
 		 String extension = fileName.substring(dotIndex + 1);
-		 if (extension != "json")
+		 if (!extension.equals("json"))
 		 {
 			 throw new Exception("Le fichier n'est pas de format JSON");
 		 }
@@ -79,7 +79,7 @@ public class FileReaders {
 		 String fileName = file.getName();
 		 int dotIndex = fileName.lastIndexOf(".");
 		 String extension = fileName.substring(dotIndex + 1);
-		 if (fileList.contains(extension))
+		 if (!fileList.contains(extension))
 		 {
 			 throw new Exception("Le format du fichier n'est pas encore pris en charge");
 		 }
@@ -115,7 +115,6 @@ public class FileReaders {
 		 String extension = fileName.substring(dotIndex + 1);
 		 if (!extension.equals("xml"))
 		 {
-			 System.out.println(extension);
 			 throw new Exception("Le fichier n'est pas de format xml");
 		 }
 		 try

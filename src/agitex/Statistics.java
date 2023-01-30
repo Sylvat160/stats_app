@@ -22,6 +22,7 @@ public class Statistics {
     			float moyenneActuelle = moyenneSP.get(profession);
     			int count = getClientCountByPofession(clients, profession);
     			moyenneSP.put(profession, (moyenneActuelle * (count - 1) + salaire) / count);
+    			System.out.println("MA : " + moyenneActuelle + "count : " + count + "HM : " + moyenneSP  );
     		}
     	}
     }

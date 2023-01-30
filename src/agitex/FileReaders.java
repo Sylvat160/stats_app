@@ -13,8 +13,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import java.io.FileReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -69,11 +69,20 @@ public class FileReaders {
 		 return clients;
 	 }
 	 
-	 public List<Client> readCsv(String filePath) throws FileNotFoundException
+	 public List<Client> readOtherFile(String filePath) throws Exception
 	 {
 //		 String file = "/home/ts/Developpement/JAVA/agitex/src/agitex/client.csv";
 		 BufferedReader reader =  null;
 		 String line = "";
+		 List<String> fileList = Arrays.asList("txt", "csv");
+		 File file = new File(filePath);
+		 String fileName = file.getName();
+		 int dotIndex = fileName.lastIndexOf(".");
+		 String extension = fileName.substring(dotIndex + 1);
+		 if (fileList.contains(extension))
+		 {
+			 throw new Exception("Le format du fichier n'est pas encore pris en charge");
+		 }
 		 
 		 try {
 			 reader =  new BufferedReader(new FileReader(filePath));
@@ -104,8 +113,9 @@ public class FileReaders {
 		 String fileName = file.getName();
 		 int dotIndex = fileName.lastIndexOf(".");
 		 String extension = fileName.substring(dotIndex + 1);
-		 if (extension != "xml")
+		 if (!extension.equals("xml"))
 		 {
+			 System.out.println(extension);
 			 throw new Exception("Le fichier n'est pas de format xml");
 		 }
 		 try
